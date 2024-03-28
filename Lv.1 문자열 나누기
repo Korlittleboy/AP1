@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+int solution(const char* s) {
+    int answer = 0;
+    int len_ = strlen(s);
+    int cnt =0;
+    int cnt_ =0;
+    
+    for(int i = 0; i < len_; i++) {
+        char x = s[i];
+        if(i==len_-1){
+            answer++;
+        }else{
+            cnt =1;
+            for(int j = i+1; j < len_; j++) {
+                char y = s[j];
+                if(x != y)
+                    cnt_++;
+                else
+                    cnt++;
+                
+                if(cnt <= cnt_) {
+                    i=j;
+                    answer++;
+                    cnt=0;
+                    cnt_=0;
+                    break;
+                }else if(j==len_-1){
+                    i=j;
+                    answer++;
+                }
+            }
+        }
+    }
+    
+    return answer;
+}
